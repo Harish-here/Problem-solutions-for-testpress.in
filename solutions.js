@@ -1,4 +1,5 @@
- function stringRev(strparm){
+            
+            function stringRev(strparm){
             return strparm.split("").reverse().join("");
             }
 
@@ -63,19 +64,16 @@
                         var a2 = arr[j].toString();
                         //get the min length of string
                         var minlen = (a1.length > a2.length)?a2.length:a1.length;
+                        var maxlen = (a1.length > a2.length)?a1.length:a2.length;
                         //if the first value is bigger readt to swap and can exit n continue the loop
                         if(a1[0]<a2[0]){
-                               temp = arr[i];
-                               arr[i] = arr[j];
-                               arr[j] = temp;
+                               toswape = true;
                             }else{
                                 if(a1[0]>a2[0]) continue;// if its is small continue the loop
                                 else{ //to check the further digit
                                     for(t=1;t<minlen;t++){
                                         if(a1[t]<a2[t]) {//to the swap
-                                        temp = arr[i];
-                                        arr[i] = arr[j];
-                                        arr[j] = temp;
+                                        toswape = true;
                                         break;
                                         }else{
                                             if(a1[t]>a2[t]){break;}//if it is smaller no need to swap exit the loop
@@ -83,16 +81,27 @@
                                                 continue;
                                             }
                                         }
+                                        var lastv = t;
                                     }
                                 }
+                                if(lastv == minlen){//one of the string is less in length
+                                var minstr = (a1.length > a2.length)?a2:a1;
+                                var maxstr = !(a1.length > a2.length)?a2:a1;
+                                for(f=0;f<maxlen;f++){
+                                    if(minstr[0]>maxstr[f]){
+                                        toswape = true;
+                                    }
+                                }
+
+                                }
+                            }
+                            if(toswape){
+                                temp = arr[i];
+                                arr[i] = arr[j];
+                                arr[j] = temp;
                             }
                         
                     }
                 }
-            }
-
-            var objfrm = document.forms[0];
-            function sayhello(){
-                var str = objfrm.elements["txt"].value.toString();
-                alert("5">"4");
+                return arr.join("")
             }
