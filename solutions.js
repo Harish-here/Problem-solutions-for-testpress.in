@@ -80,7 +80,7 @@
                     for(j=i+1;j<arr.length;j++){
                         var a1 = arr[i].toString();//making the number into string
                         var a2 = arr[j].toString();
-                        //get the min length of string
+                        //get the min & max length of string
                         var minlen = (a1.length > a2.length)?a2.length:a1.length;
                         var maxlen = (a1.length > a2.length)?a1.length:a2.length;
                         //if the first value is bigger ready to swap and can exit n continue the loop
@@ -123,4 +123,4 @@
                 }
                 return arr.join("") //joined all the array to get the largest no
             }
-            // ************  END OF PROBLEM 2   *********************
+            // ************  END OF PROBLEM 5   *********************
