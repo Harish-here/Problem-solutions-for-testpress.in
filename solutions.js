@@ -71,56 +71,21 @@
             // ************       PROBLEM 5     *********************
             function makeLargestNum(strarr){
                         //expected array in form of string eg. 10 20 12 123  separated by space
+                
                 var strarr = strarr.split(" ");
-                var arr = [];
+                var arr = [],collections =[];
                 for(i=0;i<strarr.length;i++){
-                    arr[i] = +strarr[i];// making inot proper array
-                } var temp ="";
-                for(i =0;i<arr.length;i++){
-                    for(j=i+1;j<arr.length;j++){
-                        var a1 = arr[i].toString();//making the number into string
-                        var a2 = arr[j].toString();
-                        //get the min & max length of string
-                        var minlen = (a1.length > a2.length)?a2.length:a1.length;
-                        var maxlen = (a1.length > a2.length)?a1.length:a2.length;
-                        //if the first value is bigger ready to swap and can exit n continue the loop
-                        if(a1[0]<a2[0]){
-                               toswape = true;
-                            }else{
-                                if(a1[0]>a2[0]) continue;// if its is small continue the loop
-                                else{ //to check the further digit
-                                    for(t=1;t<minlen;t++){
-                                        if(a1[t]<a2[t]) {//to the swap
-                                        toswape = true;
-                                        break;
-                                        }else{
-                                            if(a1[t]>a2[t]){break;}//if it is smaller no need to swap exit the loop
-                                            else{
-                                                continue;
-                                            }
-                                        }
-                                        var lastv = t;// to check it reach the last index
-                                    }
-                                }
-                                if(lastv == minlen){//one of the string is less in length
-                                var minstr = (a1.length > a2.length)?a2:a1;
-                                var maxstr = !(a1.length > a2.length)?a2:a1;
-                                for(f=0;f<maxlen;f++){
-                                    if(minstr[0]>maxstr[f]){
-                                        toswape = true;
-                                    }
-                                }
-
-                                }
-                            }
-                            if(toswape){//flag prev set in one of the test case
-                                temp = arr[i];
-                                arr[i] = arr[j];
-                                arr[j] = temp;
-                            }
-                        
+                    arr[i] = +strarr[i];
+                }var temp = "";
+                for(i=0;i<arr.length;i++){
+                    for(j=i;j<arr.length;j++){//make all possible combinations of numbers
+                        temp = arr[i];
+                        arr[i] = arr[j];
+                        arr[j] = temp;
+                        collections.push(arr.join(""));
                     }
                 }
-                return arr.join("") //joined all the array to get the largest no
+                return Math.max(...collections);//find the max number in the collections
+            
             }
             // ************  END OF PROBLEM 5   *********************
